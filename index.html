@@ -894,16 +894,24 @@
   async function loadNoticias() {
     try {
       const noticias = await fetchSheetTab('Noticias');
-      const categorias = ['cine', 'serie', 'wrestling'];
-      let seleccionadas = [];
 
-      categorias.forEach(cat => {
-        const delCat = noticias
-          .filter(n => (n.categoria || '').toString().toLowerCase().trim() === cat)
-          .slice(-5)
-          .slice(-2);
-        seleccionadas = seleccionadas.concat(delCat);
-      });
+      // Función auxiliar para obtener las 2 noticias más recientes de una categoría
+      const getRecientes = (cat) => noticias
+        .filter(n => (n.categoria || '').toString().toLowerCase().trim() === cat)
+        .slice(-5)
+        .slice(-2);
+
+      const cineItems = getRecientes('cine');
+      const wrestlingItems = getRecientes('wrestling');
+      const serieItems = getRecientes('serie');
+
+      // Intercalar según la secuencia solicitada:
+      // Fila 1: Cine -> Wrestling -> Serie
+      // Fila 2: Serie -> Wrestling -> Cine
+      const seleccionadas = [
+        cineItems[0], wrestlingItems[0], serieItems[0],
+        serieItems[1], wrestlingItems[1], cineItems[1]
+      ].filter(Boolean);
 
       const container = document.querySelector('#bottom .container');
       if (!container) return;
@@ -956,13 +964,12 @@
       const filmItems = getRandom(resenas.filter(r => (r.categoria || '').toString().toLowerCase().trim() === 'film'), 2);
       const serieItems = getRandom(resenas.filter(r => (r.categoria || '').toString().toLowerCase().trim() === 'serie'), 2);
 
-      const seleccionadas = [...musicItems, ...filmItems, ...serieItems];
+      // Armar el orden por columnas: Music -> Film -> Serie
+      const col1 = [musicItems[0], filmItems[0], serieItems[0]].filter(Boolean);
+      const col2 = [musicItems[1], filmItems[1], serieItems[1]].filter(Boolean);
 
       const menu2Container = document.querySelector('.menu2');
-      if (!menu2Container || seleccionadas.length === 0) return;
-
-      const col1 = seleccionadas.slice(0, 3);
-      const col2 = seleccionadas.slice(3, 6);
+      if (!menu2Container || (col1.length === 0 && col2.length === 0)) return;
 
       const renderCol = (list) => list.map(r => `
         <li>
