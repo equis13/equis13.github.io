@@ -868,11 +868,10 @@
   </div>
 </div>
 
-  <!-- JavaScript Vanilla sin dependencias como jQuery -->
-  <script>
-    const SPREADSHEET_ID = '1Fhl26Rla6TJ5QL2G-LKQ_YGweRg6OACLrz8EU0H4nB4';
+ <script>
+  // ID corregido (Solo el código hash)
+  const SPREADSHEET_ID = '1Fhl26Rla6TJ5QL2G-LKQ_YGweRg6OACLrz8EU0H4nB4';
 
-  // Función para consultar Google Sheets mediante su API pública de Viz
   async function fetchSheetTab(tabName) {
     const url = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(tabName)}`;
     const res = await fetch(url);
@@ -892,12 +891,9 @@
     });
   }
 
-  // CARGAR NOTICIAS
   async function loadNoticias() {
     try {
       const noticias = await fetchSheetTab('Noticias');
-      
-      // Filtrar y tomar hasta 5 recientes por categoría
       const categorias = ['cine', 'serie', 'wrestling'];
       let seleccionadas = [];
 
@@ -914,17 +910,15 @@
       container.innerHTML = '';
 
       seleccionadas.forEach(n => {
-        const hasText = n.texto_completo && n.texto_completo.trim() !== '';
-        const hasLink = n.link && n.link.trim() !== '';
+        const hasText = n.texto_completo && n.texto_completo.toString().trim() !== '';
+        const hasLink = n.link && n.link.toString().trim() !== '';
         
         let clickHandler = '';
         let hrefAttr = '#';
 
         if (hasText) {
-          // Si tiene texto completo, abre el modal
           clickHandler = `onclick="openModal('${encodeURIComponent(JSON.stringify(n))}'); return false;"`;
         } else if (hasLink) {
-          // Si no tiene texto completo pero tiene link, redirige
           hrefAttr = n.link;
         }
 
@@ -949,35 +943,31 @@
     }
   }
 
-  // CARGAR RESEÑAS / R3
   async function loadResenas() {
     try {
       const resenas = await fetchSheetTab('Resenas');
       
-      // Función auxiliar para obtener N elementos aleatorios
       const getRandom = (arr, n) => {
         const shuffled = [...arr].sort(() => 0.5 - Math.random());
         return shuffled.slice(0, n);
       };
 
-      // 2 de Music, 2 de Film, 2 de Serie
-      const musicItems = getRandom(resenas.filter(r => r.categoria.toLowerCase() === 'music'), 2);
-      const filmItems = getRandom(resenas.filter(r => r.categoria.toLowerCase() === 'film'), 2);
-      const serieItems = getRandom(resenas.filter(r => r.categoria.toLowerCase() === 'serie'), 2);
+      const musicItems = getRandom(resenas.filter(r => (r.categoria || '').toString().toLowerCase().trim() === 'music'), 2);
+      const filmItems = getRandom(resenas.filter(r => (r.categoria || '').toString().toLowerCase().trim() === 'film'), 2);
+      const serieItems = getRandom(resenas.filter(r => (r.categoria || '').toString().toLowerCase().trim() === 'serie'), 2);
 
       const seleccionadas = [...musicItems, ...filmItems, ...serieItems];
 
       const menu2Container = document.querySelector('.menu2');
       if (!menu2Container || seleccionadas.length === 0) return;
 
-      // Dividir en 2 columnas (3 elementos por columna)
       const col1 = seleccionadas.slice(0, 3);
       const col2 = seleccionadas.slice(3, 6);
 
       const renderCol = (list) => list.map(r => `
         <li>
           <a href="${r.link || '#'}" target="_blank">
-            <b>${r.tipo}</b> <span class="cat">${r.categoria.toUpperCase()}</span> ${r.titulo}
+            <b>${r.tipo}</b> <span class="cat">${(r.categoria || '').toUpperCase()}</span> ${r.titulo}
           </a> 
           <p><img class="efe_img" src="${r.foto}" alt="${r.titulo}"/></p>
         </li>
@@ -992,17 +982,16 @@
     }
   }
 
-  // FUNCIONES DEL MODAL
   function openModal(jsonEncodedData) {
     const data = JSON.parse(decodeURIComponent(jsonEncodedData));
     
-    document.getElementById('modal-title').innerText = data.titulo;
-    document.getElementById('modal-date-cat').innerText = `${data.fecha_mes} ${data.fecha_dia} | Categoria: ${data.categoria.toUpperCase()}`;
-    document.getElementById('modal-img').src = data.foto;
-    document.getElementById('modal-text').innerText = data.texto_completo;
+    document.getElementById('modal-title').innerText = data.titulo || '';
+    document.getElementById('modal-date-cat').innerText = `${data.fecha_mes || ''} ${data.fecha_dia || ''} | Categoria: ${(data.categoria || '').toUpperCase()}`;
+    document.getElementById('modal-img').src = data.foto || '';
+    document.getElementById('modal-text').innerText = data.texto_completo || '';
 
     const extLink = document.getElementById('modal-external-link');
-    if (data.link && data.link.trim() !== '') {
+    if (data.link && data.link.toString().trim() !== '') {
       extLink.href = data.link;
       extLink.style.display = 'inline-block';
     } else {
@@ -1016,7 +1005,6 @@
     document.getElementById('news-modal').style.display = 'none';
   }
 
-  // Cerrar modal al hacer clic fuera del contenido
   window.onclick = function(event) {
     const modal = document.getElementById('news-modal');
     if (event.target === modal) {
@@ -1024,11 +1012,10 @@
     }
   };
 
-  // Inicializar al cargar la página
   document.addEventListener('DOMContentLoaded', () => {
     loadNoticias();
     loadResenas();
-  });
+    
     const navButton = document.querySelector('button[aria-expanded]');
     if (navButton) {
       navButton.addEventListener('click', () => {
@@ -1036,7 +1023,8 @@
         navButton.setAttribute('aria-expanded', !expanded);
       });
     }
-  </script>
+  });
+</script>
 </body>
 
 </html>
