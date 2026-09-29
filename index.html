@@ -903,9 +903,9 @@
 
       categorias.forEach(cat => {
         const delCat = noticias
-          .filter(n => n.categoria.toLowerCase() === cat)
-          .slice(-5) // Toma las últimas 5 ingresadas
-          .slice(-2); // Selecciona las 2 más recientes del bloque de 5
+          .filter(n => (n.categoria || '').toString().toLowerCase().trim() === cat)
+          .slice(-5)
+          .slice(-2);
         seleccionadas = seleccionadas.concat(delCat);
       });
 
