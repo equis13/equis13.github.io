@@ -7,29 +7,28 @@
   <title>Equistrece</title>
 
   <!-- Favicons e Iconos -->
-  <link rel="apple-touch-icon" sizes="180x180" href="equistrece_eye.jpg">
-  <link rel="icon" type="image/png" sizes="32x32" href="equistrece_eye.jpg">
-  <link rel="icon" type="image/png" sizes="16x16" href="equistrece_eye.jpg">
-  <link rel="shortcut icon" href="equistrece_eye.jpg" type="image/x-icon">
-  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" sizes="180x180" href="/equistrece_eye.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/equistrece_eye.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/equistrece_eye.jpg">
+  <link rel="shortcut icon" href="/equistrece_eye.jpg" type="image/x-icon">
+  <link rel="manifest" href="/manifest.json">
 
-  <!-- Open Graph -->
   <meta property="og:title" content="Equistrece - Music · Series · Anime · Films">
   <meta property="og:description" content="Portal multimedia sobre música, anime y cine.">
-  <meta property="og:image" content="img/equistrece_logo.png">
+  <meta property="og:image" content="https://tuweb.com/img/equistrece_logo.png">
   <meta property="og:type" content="website">
 
-  <!-- PWA & Theme -->
   <meta name="msapplication-TileColor" content="#3d47d9">
   <meta name="msapplication-TileImage" content="img/equistrece_logo_circle.png">
-  <meta name="theme-color" content="#f2172d">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#3d47d9">
 
-  <!-- Metadata -->
   <meta name="keywords" content="musica, anime, videos, clips, film, movies, peliculas, music, juegos, videogames, equistrece, wrestling">
   <meta name="author" content="Ivan Lopez Pedreanez">
   <meta name="description" content="equistrece">
+
+  <meta name="theme-color" content="#f2172d">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
   <!-- GOOGLE FONTS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -39,8 +38,585 @@
   <!-- FONT AWESOME -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-  <!-- HOJA DE ESTILOS CSS EXTERNA -->
-  <link rel="stylesheet" href="styles.css">
+  <style>
+    html {
+      box-sizing: border-box;
+      font-weight: 900;
+      font-size: 10px;
+      color: var(--black, #000);
+      text-shadow: 0 2px 0 rgba(0, 0, 0, 0.07);
+      font-family: 'Lato', sans-serif;
+    }
+
+    *, *:before, *:after {
+      box-sizing: inherit;
+    }
+
+    body {
+      background: linear-gradient(#111, #f2172d, #000, #f2172d, #121212);
+      background-size: 340px, auto;
+      min-height: calc(100vh - 100px);
+      margin: 50px;
+      letter-spacing: -1px;
+      font-size: 12px;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      margin: 0 0 5px 0;
+    }
+
+    button {
+      background: white;
+      border: 1px solid black;
+      padding: 8px 20px;
+      margin: 5px;
+      font-size: 24px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    img {
+      max-width: 100%;
+      margin: -5px;
+    }
+
+    .menu ul, .menu2 ul {
+      background: linear-gradient(rgba(0,0,0,0.98), rgba(0,0,0,0.95));
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center center;
+      display: grid;
+      grid-gap: 5px;
+      padding: 0;
+      list-style: none;
+      grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+      font-size: 15px;
+    }
+
+    .menu a, .menu2 a {
+      min-height: 50px;
+      background: transparent;
+      display: block;
+      text-decoration: none;
+      padding: 15px 10px 0px 10px;
+      text-align: center;
+      color: white;
+      text-transform: uppercase;
+      font-size: 15px;
+    }
+
+    [aria-controls="menu-list"] {
+      display: none;
+    }
+
+    /* Noticias Ticker */
+    #noticias {
+      background: white;
+      width: 100%;
+      height: 35px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .marquee-content {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      width: 100%;
+      animation: marqueeScroll 12s linear infinite;
+    }
+
+    .marquee-content:hover {
+      animation-play-state: paused;
+    }
+
+    .marquee-content p {
+      margin: 0;
+      line-height: 35px;
+      padding: 0 10px;
+      word-spacing: 150%;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+
+    .marquee-content p b {
+      font-size: 120%;
+      padding: 0px 5px;
+      color: rgb(220, 0, 40);
+      font-weight: 800;
+      word-spacing: 100%;
+    }
+
+    @keyframes marqueeScroll {
+      0% { transform: translateY(0); }
+      33% { transform: translateY(-35px); }
+      66% { transform: translateY(-70px); }
+      100% { transform: translateY(0); }
+    }
+
+    i {
+      padding-right: 2px;
+      color: rgb(220, 0, 60);
+      transition: 0.05s all;
+    }
+
+    i:hover {
+      font-size: 120%;
+      padding-right: 4px;
+    }
+
+    /* Layout Wrapper */
+    .wrapper {
+      display: grid;
+      grid-gap: 20px;
+    }
+
+    .top {
+      display: grid;
+      grid-gap: 20px;
+      grid-template-areas: "hero hero hero cta1" "hero hero hero cta1" "hero hero hero cta2";
+    }
+
+    .hero {
+      grid-area: hero;
+      min-height: 400px;
+      background: white url('x13.jpg');
+      background-size: cover;
+      background-position: center center;
+      padding: 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      justify-content: center;
+    }
+
+    .hero > * {
+      background: white;
+      padding: 5px;
+    }
+
+    .cta {
+      display: grid;
+      align-items: center;
+      justify-items: center;
+      align-content: center;
+    }
+
+    .cta1 {
+      grid-area: cta1;
+      background: white url('app2.png');
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    .cta2 {
+      grid-area: cta2;
+      background: black url('LP_FreelancerS_heading.png');
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      background-position: center center;
+      min-width: 100px;
+    }
+
+    /* Redes sociales unificadas en el Hero (Sin fondo blanco, mismo unicolor adaptado) */
+    #rrss-hero {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+      background: transparent !important;
+      padding: 0 !important;
+    }
+
+    .rrss-icon {
+      font-size: 24px;
+      color: #fff;
+      background: transparent !important;
+      border: none !important;
+      transition: transform 0.3s ease, color 0.3s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .rrss-icon:hover {
+      transform: scale(1.2);
+      color: #f2172d;
+    }
+
+    /* Features - Ancho completo en mobile */
+    .features {
+      display: grid;
+      grid-gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    .feature {
+      background: white;
+      padding: 10px;
+      border: 1px solid white;
+      text-align: center;
+      box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .feature p {
+      color: rgba(0, 0, 0, 0.5);
+    }
+
+    .menu2 li a {
+      background: white;
+      border: 2px solid rgb(220, 0, 60);
+      color: black;
+    }
+
+    .cat {
+      padding: 0px 2px;
+      color: white;
+      background: rgb(220, 0, 80);
+      margin: 0px 4px;
+      font-size: 21px;
+    }
+
+    .efe_img {
+      margin-left: 7%;
+      width: 90%;
+      height: 100%;
+      text-align: center;
+      cursor: pointer;
+      transition: opacity 0.3s;
+    }
+    .efe_img:hover {
+      opacity: 0.85;
+    }
+
+    /* Banner & Bottom */
+    .banner {
+      height: 300px;
+      display: grid;
+      grid-template-columns: 400px 1fr;
+      align-items: center;
+      background: black url('banner_x13_big.png');
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+    }
+
+    .bottom {
+      display: grid;
+      grid-template-columns: 1fr;
+      align-items: center;
+      background: black;
+    }
+
+    .container {
+      display: grid;
+      grid-gap: 20px;
+      grid-template-columns: repeat(3, 1fr);
+      font-family: 'Lato', sans-serif;
+      font-weight: 800;
+    }
+
+    /* Tarjetas de Noticias */
+    .news {
+      background: #111 !important;
+      border: 2px solid #f2172d !important;
+      color: #fff !important;
+      border-radius: 6px;
+      padding: 18px !important;
+      box-shadow: 0 0 12px rgba(242, 23, 45, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .news:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 0 20px rgba(242, 23, 45, 0.7);
+    }
+
+    .news a {
+      color: #f2172d !important;
+      font-family: 'Nova Square', sans-serif;
+      font-size: 20px !important;
+      line-height: 1.3;
+      padding-left: 0 !important;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 12px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .news p {
+      background: transparent !important;
+      color: #e0e0e0 !important;
+      font-family: 'Lato', sans-serif;
+      font-size: 16px !important;
+      line-height: 1.6 !important;
+      padding: 0 !important;
+      text-align: left !important;
+    }
+
+    /* Hero2 */
+    .hero2 {
+      grid-area: hero2;
+      min-height: 400px;
+      background: url('psycho.png'), url('freaks.png'), url('redSmoke.jpeg');
+      background-size: cover;
+      background-position: center center;
+      padding: 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      justify-content: center;
+    }
+
+    .hero2 > * {
+      background: white;
+      padding: 5px;
+      font-size: 130%;
+      font-family: "Barriecito", cursive;
+    }
+
+    .ctas {
+      display: grid;
+      align-items: center;
+      justify-items: center;
+      align-content: center;
+    }
+
+    .ctas1 {
+      grid-area: ctas1;
+      background: white;
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+    }
+
+    .ctas2 {
+      grid-area: ctas2;
+      background: black;
+      width: 50px;
+    }
+
+    .volteado {
+      position: relative;
+      font-size: 20px;
+      background: white;
+      margin: 0px 10px;
+      padding: 0px 10px;
+      border: 0px;
+      transform: rotate(-90deg);
+    }
+
+    .ctas3 {
+      grid-area: ctas3;
+      background: white;
+    }
+
+    #equipo {
+      font-size: 20px;
+      font-weight: 400;
+      text-align: left;
+    }
+
+    .medio {
+      display: grid;
+      grid-gap: 15px;
+      grid-template-columns: 1fr 12fr 4fr;
+      grid-template-areas:
+        "ctas2 hero2 ctas1"
+        "ctas2 hero2 ctas3"
+        "ctas2 hero2 ctas3";
+    }
+
+    #acknowledge {
+      background: white;
+      border: 3px solid gold;
+      padding: 6px 8px;
+      margin: 3px;
+      font-size: 16px;
+    }
+
+    /* Estilo para el segundo Desarrollado por con logo Spotiflix */
+    .spotiflix-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #000;
+      color: #fff;
+      border: 2px solid #1DB954;
+      padding: 8px 15px;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+    .spotiflix-btn:hover {
+      background: #111;
+    }
+    .spotiflix-btn img {
+      width: 24px;
+      height: 24px;
+      margin: 0;
+      object-fit: contain;
+    }
+
+    .creditos {
+      position: relative;
+      width: 100%;
+      bottom: 0%;
+      z-index: 4;
+      background: black;
+      color: white;
+      font-size: 20px;
+      text-align: center;
+      padding: 1px 20px;
+    }
+
+    /* Botón animado */
+    .btn {
+      position: relative;
+      letter-spacing: 0.15em;
+      margin: 0 auto;
+      padding: 1rem 2.5rem;
+      background: transparent;
+      outline: none;
+      font-size: 28px;
+      transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.15s;
+    }
+
+    /* MODAL RETRO/DARK - Letra ampliada */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(4px);
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .modal-content {
+      background: #111;
+      border: 3px solid rgb(220, 0, 60);
+      color: white;
+      max-width: 700px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 30px;
+      position: relative;
+      box-shadow: 0 0 20px rgba(220, 0, 60, 0.5);
+      font-family: 'Lato', sans-serif;
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      color: rgb(220, 0, 60);
+      font-size: 30px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close-modal:hover {
+      color: white;
+    }
+
+    .modal-header {
+      border-bottom: 2px solid rgb(220, 0, 60);
+      padding-bottom: 10px;
+      margin-bottom: 15px;
+    }
+
+    .modal-body img {
+      width: 100%;
+      max-height: 320px;
+      object-fit: cover;
+      margin: 15px 0;
+      border: 1px solid #333;
+    }
+
+    .modal-body p {
+      font-size: 16px !important; /* Letra más grande en el modal como pediste */
+      line-height: 1.8;
+      color: #ddd;
+      white-space: pre-line;
+      text-align: left;
+    }
+
+    .modal-footer {
+      margin-top: 20px;
+      text-align: right;
+    }
+
+    .modal-footer a {
+      background: rgb(220, 0, 60);
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-block;
+      font-size: 14px;
+    }
+
+    .feature-box {
+      background: #111;
+      border-radius: 6px;
+      min-height: 200px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 15px;
+      text-align: left;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+
+    /* Media Queries */
+    @media (max-width: 1000px) {
+      .menu { order: -1; perspective: 800px; }
+      [aria-controls="menu-list"] { display: block; margin-bottom: 10px; }
+      .menu ul { max-height: 0; overflow: hidden; transform: rotateX(90deg); transition: all 0.5s; }
+      [aria-expanded="true"] ~ ul { display: grid; max-height: 500px; transform: rotateX(0); }
+      .banner { height: 250px; }
+      .menu a { font-size: 12px; }
+      #acknowledge { display: none; }
+      .medio {
+        display: grid;
+        grid-gap: 20px;
+        grid-template-areas:
+          "ctas2 hero2 hero2"
+          "ctas2 hero2 hero2"
+          "ctas2 ctas1 ctas3"
+          "ctas2 ctas1 ctas3";
+      }
+      .menu2 { font-size: 16px; }
+    }
+
+    @media (max-width: 700px) {
+      .top { grid-template-areas: "hero hero" "cta1 cta2 cta2" "cta1 cta2 cta2"; }
+      .medio { display: none; }
+      .banner { grid-template-columns: 1fr; height: 200px; }
+      .container { grid-template-columns: 1fr; } /* Noticias visibles y ordenadas de ancho completo en mobile */
+    }
+
+    @media (max-width: 499px) {
+      .top { grid-template-areas: "hero" "cta1" "cta2" "cta2"; }
+      .cta2 { display: none; }
+      .bottom { display: block; } /* Forzar que aparezcan las noticias en mobile */
+      .menu2 { display: grid; } /* Forzar que aparezcan las reseñas en mobile */
+    }
+  </style>
 </head>
 
 <body>
@@ -53,7 +629,7 @@
       </button>
       <ul id="menu-list">
         <li>
-          <div class="container">
+          <div class="container" style="display:flex; justify-content:center;">
             <a class="btn" href="#" style="z-index:7;color:white;">equ1str3ce</a>
           </div>
         </li>
@@ -65,7 +641,7 @@
       </ul>
     </nav>
 
-    <!-- Marquesina de Noticias Animada -->
+    <!-- Noticias Ticker -->
     <div id="noticias">
       <div class="marquee-content">
         <p><b>#CapitanAmerica4:</b> La cuarta pelicula del capi, pero ahora sin Steve Rogers, quien eligio a Falcon como sucesor pero no sera tan facil</p>
@@ -81,19 +657,19 @@
         <span style="font-size:16px">All in One Three</span>
         <img alt="equistrece" style="width: 80px;height:70px;border-radius:50%;border:0px; margin:10px" src="equistrece_eye.jpg">
     
-        <!-- Redes sociales unificadas en el Hero -->
+        <!-- Redes sociales unificadas y sin fondo blanco -->
         <div id="rrss-hero">
-          <a href="https://open.spotify.com/user/31opnk6xgn7qwbjhdmwrrefburgm" target="_blank" title="Spotify"><i class="fa fa-spotify rrss" style="color:#1DB954;"></i></a>
-          <a href="https://www.instagram.com/equistrece" target="_blank" title="Instagram"><i class="fa fa-instagram rrss" style="color:#e1306c;"></i></a>
-          <a href="https://letterboxd.com/ivanguillermo/list/equistrece/" target="_blank" title="Letterboxd" class="letterboxd-icon-hero">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <a href="https://open.spotify.com/user/31opnk6xgn7qwbjhdmwrrefburgm" target="_blank" title="Spotify" class="rrss-icon"><i class="fa fa-spotify"></i></a>
+          <a href="https://www.instagram.com/equistrece" target="_blank" title="Instagram" class="rrss-icon"><i class="fa fa-instagram"></i></a>
+          <a href="https://letterboxd.com/ivanguillermo/list/equistrece/" target="_blank" title="Letterboxd" class="rrss-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <circle cx="6" cy="12" r="4" fill="#00e054"/>
               <circle cx="12" cy="12" r="4" fill="#40bcf4"/>
               <circle cx="18" cy="12" r="4" fill="#ff8000"/>
             </svg>
           </a>
-          <a href="https://www.youtube.com/equistrece" target="_blank" title="YouTube"><i class="fa fa-youtube rrss" style="color:#ff0000;"></i></a>
-          <a href="#" title="Facebook"><i class="fa fa-facebook-official rrss" style="color:#1877f2;"></i></a>
+          <a href="https://www.youtube.com/equistrece" target="_blank" title="YouTube" class="rrss-icon"><i class="fa fa-youtube"></i></a>
+          <a href="#" title="Facebook" class="rrss-icon"><i class="fa fa-facebook-official"></i></a>
         </div>
       </header>
     
@@ -110,12 +686,10 @@
     </div>
 
     <section class="features">
-      <!-- 1. Video de YouTube -->
       <div class="feature" style="background:black; padding:0;">
         <iframe width="100%" height="200" src="https://www.youtube.com/embed/9auz3npUFSc" style="border:0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
     
-      <!-- 2. Última reseña de Letterboxd -->
       <div class="feature feature-box" style="border: 2px solid #00e054;">
         <h4 style="color:#00e054; font-family:'Nova Square', sans-serif; font-size:16px; margin-bottom:8px; display:flex; align-items:center; gap:6px;">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="6" cy="12" r="4" fill="#00e054"/><circle cx="12" cy="12" r="4" fill="#40bcf4"/><circle cx="18" cy="12" r="4" fill="#ff8000"/></svg>
@@ -127,12 +701,10 @@
         </a>
       </div>
     
-      <!-- 3. Playlist de Spotify -->
       <div class="feature" style="background:#121212; padding:0; border: 2px solid #1DB954;">
         <iframe style="border-radius:0px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DX1Xee21S233X?utm_source=generator&theme=0" width="100%" height="200" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
       </div>
     
-      <!-- 4. Último post de Instagram -->
       <div class="feature feature-box" style="border: 2px solid #e1306c;">
         <h4 style="color:#e1306c; font-family:'Nova Square', sans-serif; font-size:16px; margin-bottom:8px; display:flex; align-items:center; gap:6px;">
           <i class="fa fa-instagram"></i> INSTAGRAM
@@ -187,9 +759,12 @@
         <img alt="equistrece" style="width: 80px;height:80px;border-radius:50%;border:0px; margin:30px" src="equistrece_eye.jpg">
       </header>
       
+      <!-- Segundo Desarrollado por con enlace a spotiflix.github.io e icono spotiflix_logo.png -->
       <div class="ctas ctas1">
-        <a href="https://lpfreelancers.github.io" target="_blank" style="text-decoration:none;">
-          <button id="acknowledge2" type="button">Desarrollado por</button>
+        <a href="https://spotiflix.github.io" target="_blank" style="text-decoration:none;">
+          <button class="spotiflix-btn" type="button">
+            <img src="spotiflix_logo.png" alt="Spotiflix"> Desarrollado por
+          </button>
         </a>
       </div>
     
@@ -212,73 +787,7 @@
     <h1 style="color:white">NOTICIAS</h1>
     <section class="bottom" id="bottom">
       <div class="container">
-
-        <div class="news item1">
-          <a href="https://letterboxd.com/ivanguillermo/film/captain-america-brave-new-world/">
-            <b>FEB</b> <span class="cat">14</span> CAPTAIN AMERICA 4
-          </a>
-          <p style="font-size: 16px;padding: 15px 14px 0px 8px; line-height: 200%;text-align:center">
-            <img class="efe_img" src="captain_america.png" alt="Captain America 4">
-            <br>
-            Desde que Steve Rogers decidiera viajar al pasado para envejecer junto a Peggy Carter en Endgame, el futuro del Capitán América ha estado en el aire. Steve quería que Falcon cogiera el escudo como su sucesor pero las cosas no iban a ser tan fáciles.
-          </p>
-        </div>
-
-        <div class="news item2">
-          <a href="https://www.filmaffinity.com/es/film819024.html">
-            <b>FEB</b> <span class="cat">20</span> DIA CERO
-          </a>
-          <p style="font-size: 16px;padding: 15px 14px 0px 8px; line-height: 200%;text-align:center">
-            <img class="efe_img" src="dia_cero.png" alt="Dia Cero">
-            <br>
-            Nueva serie Netflix, la primera de Robert de Niro. Donde interpreta a un ex-presidente de Estados Unidos quien tras un ciberataque devastador le encomiendan descubrir a los autores y sacar la verdad a la luz antes de que ataquen de nuevo.
-          </p>
-        </div>
-
-        <div class="news item3">
-          <a href="https://www.wwe.com/shows/eliminationchamber">
-            <b>MAR</b> <span class="cat">01</span> ELIMINATION CHAMBER
-          </a>
-          <p style="font-size: 16px;padding: 15px 14px 0px 8px; line-height: 200%;text-align:center">
-            <img class="efe_img" src="ec_wwe.png" alt="Elimination Chamber">
-            <br>
-            Este primero de Marzo en Ontario, Canada, se llevara a cabo la ultima Elimination chamber de John Cena. Con un evento central donde el ganador se enfrentara a Cody Rhodes por el Campeonato de la WWE.
-          </p>
-        </div>
-
-        <div class="news item3">
-          <a href="https://www.wwe.com/shows/wrestlepalooza">
-            <b>SEP</b> <span class="cat">01</span> WRESTLEPALOOZA
-          </a>
-          <p style="font-size: 16px;padding: 15px 14px 0px 8px; line-height: 200%;text-align:center">
-            <img class="efe_img" src="wrestlepalooza.jpg" alt="Wrestlepalooza">
-            <br>
-            Este 20 de Septiembre en Toronto, Canada, se llevará a cabo una jornada espectacular de lucha libre con enfrentamientos estelares.
-          </p>
-        </div>
-
-        <div class="news item2">
-          <a href="https://www.imdb.com/es/title/tt10691770/?ref_=fn_all_ttl_1">
-            <b>SEP</b> <span class="cat">10</span> HELLUVA BOSS
-          </a>
-          <p style="font-size: 16px;padding: 15px 14px 0px 8px; line-height: 200%;text-align:center">
-            <img class="efe_img" src="helluva_boss.jpeg" alt="Helluva Boss">
-            <br>
-            El episodio especial Misión Cero se lanzará como piloto introductorio en Prime Video el 10 de septiembre de 2025. Se espera que la nueva temporada llegue en la segunda mitad de 2026.
-          </p>
-        </div>
-
-        <div class="news item3">
-          <a href="https://www.filmaffinity.com/es/film847269.html">
-            <b>SEP</b> <span class="cat">12</span> KIMETSU NO YAIBA
-          </a>
-          <p style="font-size: 16px;padding: 15px 14px 0px 8px; line-height: 200%;text-align:center">
-            <img class="efe_img" src="kny_fortaleza_infinita.jpeg" alt="Kimetsu no Yaiba">
-            <br>
-            Este 12 de septiembre se estrena la primera parte de la trilogía final: La fortaleza infinita. Tanjirō y los cazadores de demonios enfrentan a Muzan Kibutsuji en una batalla definitiva.
-          </p>
-        </div>
-
+        <!-- Las noticias se cargan dinámicamente desde el script -->
       </div>
     </section>
   </div>
@@ -309,8 +818,152 @@
     </div>
   </div>
 
-  <!-- SCRIPT JAVASCRIPT EXTERNO -->
-  <script src="script.js"></script>
-</body>
+  <script>
+    const SPREADSHEET_ID = '1Fhl26Rla6TJ5QL2G-LKQ_YGweRg6OACLrz8EU0H4nB4';
 
+    async function fetchSheetTab(tabName) {
+      const url = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(tabName)}`;
+      const res = await fetch(url);
+      const text = await res.text();
+      const jsonText = text.substring(47, text.length - 2);
+      const data = JSON.parse(jsonText);
+      
+      const cols = data.table.cols.map(c => c && c.label ? c.label.toLowerCase().trim() : '');
+      return data.table.rows.map(r => {
+        let rowObj = {};
+        r.c.forEach((cell, idx) => {
+          if (cols[idx]) {
+            rowObj[cols[idx]] = cell && cell.v !== null ? cell.v : '';
+          }
+        });
+        return rowObj;
+      });
+    }
+
+    async function loadNoticias() {
+      try {
+        const noticias = await fetchSheetTab('Noticias');
+
+        const getRecientes = (cat) => noticias
+          .filter(n => (n.categoria || '').toString().toLowerCase().trim() === cat)
+          .slice(-5)
+          .slice(-2);
+
+        const cineItems = getRecientes('cine');
+        const wrestlingItems = getRecientes('wrestling');
+        const serieItems = getRecientes('serie');
+
+        const seleccionadas = [
+          cineItems[0], wrestlingItems[0], serieItems[0],
+          serieItems[1], wrestlingItems[1], cineItems[1]
+        ].filter(Boolean);
+
+        const container = document.querySelector('#bottom .container');
+        if (!container) return;
+        container.innerHTML = '';
+
+        seleccionadas.forEach(n => {
+          const card = document.createElement('div');
+          card.className = 'news';
+          // El modal se abre al hacer clic tanto en la imagen como en el título
+          card.innerHTML = `
+            <a href="#" onclick="openModal('${encodeURIComponent(JSON.stringify(n))}'); return false;">
+              <b>${n.fecha_mes}</b> 
+              <span class="cat">${n.fecha_dia}</span> 
+              ${n.titulo}
+            </a> 
+            <p style="font-size: 16px; padding: 15px 14px 0px 8px; line-height: 200%; text-align:center">
+              <img class="efe_img" src="${n.foto}" alt="${n.titulo}" onclick="openModal('${encodeURIComponent(JSON.stringify(n))}'); return false;"/>
+              <br/>
+              ${n.resumen}
+            </p>
+          `;
+          container.appendChild(card);
+        });
+      } catch (e) {
+        console.error('Error cargando noticias:', e);
+      }
+    }
+
+    async function loadResenas() {
+      try {
+        const resenas = await fetchSheetTab('Resenas');
+        
+        const getRandom = (arr, n) => {
+          const shuffled = [...arr].sort(() => 0.5 - Math.random());
+          return shuffled.slice(0, n);
+        };
+
+        const musicItems = getRandom(resenas.filter(r => (r.categoria || '').toString().toLowerCase().trim() === 'music'), 2);
+        const filmItems = getRandom(resenas.filter(r => (r.categoria || '').toString().toLowerCase().trim() === 'film'), 2);
+        const serieItems = getRandom(resenas.filter(r => (r.categoria || '').toString().toLowerCase().trim() === 'serie'), 2);
+
+        const col1 = [musicItems[0], filmItems[0], serieItems[0]].filter(Boolean);
+        const col2 = [musicItems[1], filmItems[1], serieItems[1]].filter(Boolean);
+
+        const menu2Container = document.querySelector('.menu2');
+        if (!menu2Container || (col1.length === 0 && col2.length === 0)) return;
+
+        const renderCol = (list) => list.map(r => `
+          <li>
+            <a href="${r.link || '#'}" target="_blank">
+              <b>${r.tipo}</b> <span class="cat">${(r.categoria || '').toUpperCase()}</span> ${r.titulo}
+            </a> 
+            <p><img class="efe_img" src="${r.foto}" alt="${r.titulo}"/></p>
+          </li>
+        `).join('');
+
+        menu2Container.innerHTML = `
+          <ul id="efemerides">${renderCol(col1)}</ul>
+          <ul id="efemerides">${renderCol(col2)}</ul>
+        `;
+      } catch (e) {
+        console.error('Error cargando reseñas:', e);
+      }
+    }
+
+    function openModal(jsonEncodedData) {
+      const data = JSON.parse(decodeURIComponent(jsonEncodedData));
+      
+      document.getElementById('modal-title').innerText = data.titulo || '';
+      document.getElementById('modal-date-cat').innerText = `${data.fecha_mes || ''} ${data.fecha_dia || ''} | Categoria: ${(data.categoria || '').toUpperCase()}`;
+      document.getElementById('modal-img').src = data.foto || '';
+      document.getElementById('modal-text').innerText = data.texto_completo || '';
+
+      const extLink = document.getElementById('modal-external-link');
+      if (data.link && data.link.toString().trim() !== '') {
+        extLink.href = data.link;
+        extLink.style.display = 'inline-block';
+      } else {
+        extLink.style.display = 'none';
+      }
+
+      document.getElementById('news-modal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('news-modal').style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+      const modal = document.getElementById('news-modal');
+      if (event.target === modal) {
+        closeModal();
+      }
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      loadNoticias();
+      loadResenas();
+      
+      const navButton = document.querySelector('button[aria-expanded]');
+      if (navButton) {
+        navButton.addEventListener('click', () => {
+          const expanded = navButton.getAttribute('aria-expanded') === 'true';
+          navButton.setAttribute('aria-expanded', !expanded);
+        });
+      }
+    });
+  </script>
+</body>
 </html>
