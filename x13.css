@@ -76,3 +76,74 @@
     font-weight: bold;
     display: inline-block;
   }
+
+/* --- BOTÓN SPOTIFY HERO --- */
+.spotify-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #1DB954;
+  color: #000 !important;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 900;
+  text-decoration: none;
+  font-size: 14px;
+  margin-top: 10px;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(29, 185, 84, 0.4);
+}
+.spotify-badge:hover {
+  transform: scale(1.05);
+  background: #1ed760;
+  box-shadow: 0 0 15px rgba(29, 185, 84, 0.8);
+}
+
+/* --- ESTILO SEGUNDA IMAGEN (TARJETAS DE NOTICIAS) --- */
+.news {
+  background: #111 !important;
+  border: 2px solid #f2172d !important;
+  color: #fff !important;
+  border-radius: 6px;
+  box-shadow: 0 0 12px rgba(242, 23, 45, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 15px;
+}
+
+.news:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px rgba(242, 23, 45, 0.7);
+}
+
+.news a {
+  color: #f2172d !important;
+  font-family: 'Nova Square', sans-serif;
+  font-size: 18px !important;
+  padding-left: 0 !important;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.news p {
+  background: transparent !important;
+  color: #ddd !important;
+  font-family: 'Lato', sans-serif;
+  font-size: 13px !important;
+  padding-left: 0 !important;
+  line-height: 1.5 !important;
+}
+
+/* --- ICONO LETTERBOXD --- */
+.letterboxd-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 4px double rgb(120, 0, 120);
+  background-color: white;
+  margin: 4px;
+  vertical-align: middle;
+}
