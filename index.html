@@ -629,6 +629,76 @@
     font-weight: bold;
     display: inline-block;
   }
+
+  .spotify-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #1DB954;
+  color: #000 !important;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 900;
+  text-decoration: none;
+  font-size: 14px;
+  margin-top: 10px;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(29, 185, 84, 0.4);
+}
+.spotify-badge:hover {
+  transform: scale(1.05);
+  background: #1ed760;
+  box-shadow: 0 0 15px rgba(29, 185, 84, 0.8);
+}
+
+/* --- ESTILO SEGUNDA IMAGEN (TARJETAS DE NOTICIAS) --- */
+.news {
+  background: #111 !important;
+  border: 2px solid #f2172d !important;
+  color: #fff !important;
+  border-radius: 6px;
+  box-shadow: 0 0 12px rgba(242, 23, 45, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 15px;
+}
+
+.news:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px rgba(242, 23, 45, 0.7);
+}
+
+.news a {
+  color: #f2172d !important;
+  font-family: 'Nova Square', sans-serif;
+  font-size: 18px !important;
+  padding-left: 0 !important;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.news p {
+  background: transparent !important;
+  color: #ddd !important;
+  font-family: 'Lato', sans-serif;
+  font-size: 13px !important;
+  padding-left: 0 !important;
+  line-height: 1.5 !important;
+}
+
+/* --- ICONO LETTERBOXD --- */
+.letterboxd-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 4px double rgb(120, 0, 120);
+  background-color: white;
+  margin: 4px;
+  vertical-align: middle;
+}
   </style>
 </head>
 
@@ -669,16 +739,24 @@
         <span style="font-size:16px">Music · Series · Animeアニメ · Films</span>
         <span style="font-size:16px">All in One Three</span>
         <img alt="equistrece" style="width: 80px;height:70px;border-radius:50%;border:0px; margin:10px" src="equistrece_eye.jpg">
-        <a href="https://open.spotify.com/user/31opnk6xgn7qwbjhdmwrrefburgm" style="text-decoration:none; color:inherit;">
-          <span style="font-size:16px"><i class="fa fa-spotify"></i>equistrece</span>
+        
+        <!-- Enlace Spotify Mejorado -->
+        <a href="https://open.spotify.com/user/31opnk6xgn7qwbjhdmwrrefburgm" target="_blank" class="spotify-badge">
+          <i class="fa fa-spotify" style="color:#000; font-size:18px;"></i> equistrece
         </a>
       </header>
+    
+      <!-- CTA1 PWA -->
       <div class="cta cta1">
         <p>Descargate nuestra app</p>
-        <button type="button">Descargar</button>
+        <button type="button" onclick="alert('Instalación PWA próximamente');">Descargar</button>
       </div>
+    
+      <!-- CTA2 Freelancers -->
       <div class="cta cta2">
-        <button id="acknowledge" type="button">Desarrollado por</button>
+        <a href="https://lpfreelancers.github.io" target="_blank" style="text-decoration:none;">
+          <button id="acknowledge" type="button">Desarrollado por</button>
+        </a>
       </div>
     </div>
 
@@ -692,13 +770,22 @@
         <div id="rrss" class="ev-container ev-padding-16 ev-center ev-white ev-large">
           <a href="#"><i class="fa fa-facebook-official ev-hover-opacity rrss"></i></a>
           <a href="https://www.instagram.com/equistrece" target="_blank" rel="noopener noreferrer"><i class="fa fa-instagram ev-hover-opacity rrss"></i></a>
-          <a href="https://letterboxd.com/ivanguillermo/list/equistrece/" target="_blank" rel="noopener noreferrer"><i class="fa ev-hover-opacity rrss">ooo</i></a>
+          
+          <!-- Logo Letterboxd personalizado en SVG -->
+          <a href="https://letterboxd.com/ivanguillermo/list/equistrece/" target="_blank" rel="noopener noreferrer" class="letterboxd-icon ev-hover-opacity" title="Letterboxd">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="6" cy="12" r="4" fill="#00e054"/>
+              <circle cx="12" cy="12" r="4" fill="#40bcf4"/>
+              <circle cx="18" cy="12" r="4" fill="#ff8000"/>
+            </svg>
+          </a>
+      
           <a href="https://www.youtube.com/equistrece" target="_blank" rel="noopener noreferrer"><i class="fa fa-youtube ev-hover-opacity rrss"></i></a>
         </div>
       </div>
 
       <div class="feature" id="feature1" style="background-color: #1DB954">
-        <a href="https://ivanguillermo.github.io/likes/" style="text-decoration:none; color:white; display:block;">
+        <a href="https://spotiflix.github.io" target="_blank" style="text-decoration:none; color:white; display:block;">
           <div style="text-align:center;"><img src="spotiflix_logo.png" alt="Spotiflix Logo"></div>
           <h1>Spotiflix</h1>
         </a>
@@ -753,17 +840,25 @@
         <span style="font-size: 23px;">All-in-One-Tres</span>
         <img alt="equistrece" style="width: 80px;height:80px;border-radius:50%;border:0px; margin:30px" src="equistrece_eye.jpg">
       </header>
+      
       <div class="ctas ctas1">
-        <button id="acknowledge2" type="button">Desarrollado por</button>
+        <a href="https://lpfreelancers.github.io" target="_blank" style="text-decoration:none;">
+          <button id="acknowledge2" type="button">Desarrollado por</button>
+        </a>
       </div>
+    
       <div class="ctas ctas2">
         <div id="equipo">
           <h2 class="volteado">equistrece</h2>
         </div>
       </div>
-      <div class="ctas ctas3">
-        <a class="twitter-timeline" data-lang="es" data-theme="dark" data-height="150%" data-dnt="true" data-link-color="#E81C4F" href="https://twitter.com/equistrece?ref_src=twsrc%5Etfw">Tweets de equistrece</a>
-        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    
+      <!-- Reemplazo del Twitter roto por Widget de Spotify / Social Block -->
+      <div class="ctas ctas3" style="padding:10px; background:#111;">
+        <h4 style="color:#1DB954; font-family:'Nova Square'; text-align:center; margin-bottom:10px;">
+          <i class="fa fa-spotify"></i> Playlist Equistrece
+        </h4>
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DX1Xee21S233X?utm_source=generator&theme=0" width="100%" height="280" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
       </div>
     </div>
 
