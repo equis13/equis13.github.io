@@ -1,0 +1,21 @@
+{
+  "name": "Equistrece App",
+  "short_name": "Equistrece",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#111111",
+  "theme_color": "#f2172d",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "equistrece_eye.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "equistrece_eye.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}
