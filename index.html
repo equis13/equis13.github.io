@@ -28,6 +28,12 @@
   <meta name="author" content="Ivan Lopez Pedreanez">
   <meta name="description" content="equistrece">
 
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#f2172d">
+  <link rel="apple-touch-icon" href="equistrece_eye.jpg">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
   <!-- GOOGLE FONTS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -855,8 +861,8 @@
       </header>
     
       <div class="cta cta1">
-        <p>Descargate nuestra app</p>
-        <button type="button" onclick="alert('Instalación PWA próximamente');">Descargar</button>
+        <p>Instala nuestra app</p>
+        <button type="button" id="btn-install">Descargar</button>
       </div>
     
       <div class="cta cta2">
@@ -1227,6 +1233,39 @@
         const expanded = navButton.getAttribute('aria-expanded') === 'true';
         navButton.setAttribute('aria-expanded', !expanded);
       });
+    }
+  });
+</script>
+  <script>
+  // 1. Registro del Service Worker
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js')
+        .then(reg => console.log('SW registrado con éxito:', reg.scope))
+        .catch(err => console.error('Error al registrar SW:', err));
+    });
+  }
+
+  // 2. Evento para capturar la instalación de la PWA
+  let deferredPrompt;
+  const btnInstall = document.getElementById('btn-install');
+
+  window.addEventListener('beforeinstallprompt', (e) => {
+    // Evita que el navegador muestre el banner automático por defecto
+    e.preventDefault();
+    deferredPrompt = e;
+  });
+
+  btnInstall.addEventListener('click', async () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      if (outcome === 'accepted') {
+        console.log('El usuario aceptó la instalación');
+      }
+      deferredPrompt = null;
+    } else {
+      alert('Para instalar la App en tu dispositivo:\n- En Android/Chrome: Usa los 3 puntos y presiona "Añadir a la pantalla de inicio".\n- En iOS/Safari: Toca Compartir y "Agregar a inicio".');
     }
   });
 </script>
