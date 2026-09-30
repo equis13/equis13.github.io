@@ -699,6 +699,104 @@
   margin: 4px;
   vertical-align: middle;
 }
+
+    /* --- REDES SOCIALES EN EL HERO --- */
+#rrss-hero {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.rrss {
+  width: 38px;
+  height: 38px;
+  font-size: 18px;
+  border-radius: 50%;
+  border: 2px solid #111;
+  color: #111;
+  background-color: white;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.rrss:hover {
+  transform: scale(1.1);
+  background-color: #f2172d;
+  color: white;
+}
+
+.letterboxd-icon-hero {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 2px solid #111;
+  background-color: white;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.letterboxd-icon-hero:hover {
+  transform: scale(1.1);
+  background-color: #00e054;
+}
+
+/* --- TAMAÑO DE LETRA AUMENTADO EN NOTICIAS --- */
+.news {
+  background: #111 !important;
+  border: 2px solid #f2172d !important;
+  color: #fff !important;
+  border-radius: 6px;
+  padding: 18px !important;
+  box-shadow: 0 0 12px rgba(242, 23, 45, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.news:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 20px rgba(242, 23, 45, 0.7);
+}
+
+.news a {
+  color: #f2172d !important;
+  font-family: 'Nova Square', sans-serif;
+  font-size: 20px !important; /* Título más grande */
+  line-height: 1.3;
+  padding-left: 0 !important;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 12px;
+  text-decoration: none;
+}
+
+.news p {
+  background: transparent !important;
+  color: #e0e0e0 !important;
+  font-family: 'Lato', sans-serif;
+  font-size: 16px !important; /* Texto de descripción mucho más amplio y legible */
+  line-height: 1.6 !important;
+  padding: 0 !important;
+  text-align: left !important;
+}
+
+/* --- ESTILOS CAJAS FEATURES --- */
+.feature-box {
+  background: #111;
+  border-radius: 6px;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 15px;
+  text-align: left;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
   </style>
 </head>
 
@@ -739,20 +837,28 @@
         <span style="font-size:16px">Music · Series · Animeアニメ · Films</span>
         <span style="font-size:16px">All in One Three</span>
         <img alt="equistrece" style="width: 80px;height:70px;border-radius:50%;border:0px; margin:10px" src="equistrece_eye.jpg">
-        
-        <!-- Enlace Spotify Mejorado -->
-        <a href="https://open.spotify.com/user/31opnk6xgn7qwbjhdmwrrefburgm" target="_blank" class="spotify-badge">
-          <i class="fa fa-spotify" style="color:#000; font-size:18px;"></i> equistrece
-        </a>
+    
+        <!-- Redes sociales unificadas en el Hero -->
+        <div id="rrss-hero">
+          <a href="https://open.spotify.com/user/31opnk6xgn7qwbjhdmwrrefburgm" target="_blank" title="Spotify"><i class="fa fa-spotify rrss" style="color:#1DB954;"></i></a>
+          <a href="https://www.instagram.com/equistrece" target="_blank" title="Instagram"><i class="fa fa-instagram rrss" style="color:#e1306c;"></i></a>
+          <a href="https://letterboxd.com/ivanguillermo/list/equistrece/" target="_blank" title="Letterboxd" class="letterboxd-icon-hero">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="6" cy="12" r="4" fill="#00e054"/>
+              <circle cx="12" cy="12" r="4" fill="#40bcf4"/>
+              <circle cx="18" cy="12" r="4" fill="#ff8000"/>
+            </svg>
+          </a>
+          <a href="https://www.youtube.com/equistrece" target="_blank" title="YouTube"><i class="fa fa-youtube rrss" style="color:#ff0000;"></i></a>
+          <a href="#" title="Facebook"><i class="fa fa-facebook-official rrss" style="color:#1877f2;"></i></a>
+        </div>
       </header>
     
-      <!-- CTA1 PWA -->
       <div class="cta cta1">
         <p>Descargate nuestra app</p>
         <button type="button" onclick="alert('Instalación PWA próximamente');">Descargar</button>
       </div>
     
-      <!-- CTA2 Freelancers -->
       <div class="cta cta2">
         <a href="https://lpfreelancers.github.io" target="_blank" style="text-decoration:none;">
           <button id="acknowledge" type="button">Desarrollado por</button>
@@ -761,40 +867,37 @@
     </div>
 
     <section class="features">
-      <div class="feature" style="background:black">
+      <!-- 1. Video de YouTube -->
+      <div class="feature" style="background:black; padding:0;">
         <iframe width="100%" height="200" src="https://www.youtube.com/embed/9auz3npUFSc" style="border:0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
-
-      <div class="feature" style="background:#3d47a9">
-        <h3 style="color:white; margin-top: 20px;">Nuestras Redes</h3>
-        <div id="rrss" class="ev-container ev-padding-16 ev-center ev-white ev-large">
-          <a href="#"><i class="fa fa-facebook-official ev-hover-opacity rrss"></i></a>
-          <a href="https://www.instagram.com/equistrece" target="_blank" rel="noopener noreferrer"><i class="fa fa-instagram ev-hover-opacity rrss"></i></a>
-          
-          <!-- Logo Letterboxd personalizado en SVG -->
-          <a href="https://letterboxd.com/ivanguillermo/list/equistrece/" target="_blank" rel="noopener noreferrer" class="letterboxd-icon ev-hover-opacity" title="Letterboxd">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="6" cy="12" r="4" fill="#00e054"/>
-              <circle cx="12" cy="12" r="4" fill="#40bcf4"/>
-              <circle cx="18" cy="12" r="4" fill="#ff8000"/>
-            </svg>
-          </a>
-      
-          <a href="https://www.youtube.com/equistrece" target="_blank" rel="noopener noreferrer"><i class="fa fa-youtube ev-hover-opacity rrss"></i></a>
-        </div>
-      </div>
-
-      <div class="feature" id="feature1" style="background-color: #1DB954">
-        <a href="https://spotiflix.github.io" target="_blank" style="text-decoration:none; color:white; display:block;">
-          <div style="text-align:center;"><img src="spotiflix_logo.png" alt="Spotiflix Logo"></div>
-          <h1>Spotiflix</h1>
+    
+      <!-- 2. Última reseña de Letterboxd -->
+      <div class="feature feature-box" style="border: 2px solid #00e054;">
+        <h4 style="color:#00e054; font-family:'Nova Square', sans-serif; font-size:16px; margin-bottom:8px; display:flex; align-items:center; gap:6px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="6" cy="12" r="4" fill="#00e054"/><circle cx="12" cy="12" r="4" fill="#40bcf4"/><circle cx="18" cy="12" r="4" fill="#ff8000"/></svg>
+          LETTERBOXD
+        </h4>
+        <a href="https://letterboxd.com/ivanguillermo/film/nineteen-eighty-four-1984/" target="_blank" style="text-decoration:none; color:white;">
+          <p style="font-size:15px; font-weight:bold; margin-bottom:5px; color:#fff;">Nineteen Eighty-Four (1984)</p>
+          <p style="font-size:13px; color:#aaa; margin:0;">⭐ ⭐ ⭐ ⭐ ★<br>Revisión dystópica clásica sobre el control totalitario y la pérdida de la individualidad.</p>
         </a>
       </div>
-
-      <div class="feature" id="feature2">
-        <span class="icon">🎵</span>
-        <h3>Música</h3>
-        <p><b>Lo mejor de nuestra música</b></p>
+    
+      <!-- 3. Playlist de Spotify -->
+      <div class="feature" style="background:#121212; padding:0; border: 2px solid #1DB954;">
+        <iframe style="border-radius:0px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DX1Xee21S233X?utm_source=generator&theme=0" width="100%" height="200" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+      </div>
+    
+      <!-- 4. Último post de Instagram -->
+      <div class="feature feature-box" style="border: 2px solid #e1306c;">
+        <h4 style="color:#e1306c; font-family:'Nova Square', sans-serif; font-size:16px; margin-bottom:8px; display:flex; align-items:center; gap:6px;">
+          <i class="fa fa-instagram"></i> INSTAGRAM
+        </h4>
+        <a href="https://www.instagram.com/equistrece" target="_blank" style="text-decoration:none; color:white;">
+          <p style="font-size:15px; font-weight:bold; margin-bottom:5px; color:#fff;">@equistrece</p>
+          <p style="font-size:13px; color:#aaa; margin:0;">Mirá las novedades, clips de wrestling, retrogaming y cultura pop directo en nuestro feed.</p>
+        </a>
       </div>
     </section>
 
