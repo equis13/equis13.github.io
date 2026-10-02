@@ -20,15 +20,13 @@
 
   <meta name="msapplication-TileColor" content="#3d47d9">
   <meta name="msapplication-TileImage" content="img/equistrece_logo_circle.png">
-  <meta name="theme-color" content="#3d47d9">
+  <meta name="theme-color" content="#f2172d">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
   <meta name="keywords" content="musica, anime, videos, clips, film, movies, peliculas, music, juegos, videogames, equistrece, wrestling">
   <meta name="author" content="Ivan Lopez Pedreanez">
   <meta name="description" content="equistrece">
-
-  <meta name="theme-color" content="#f2172d">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
   <!-- GOOGLE FONTS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -56,9 +54,15 @@
       background: linear-gradient(#111, #f2172d, #000, #f2172d, #121212);
       background-size: 340px, auto;
       min-height: calc(100vh - 100px);
-      margin: 50px;
+      margin: 20px;
       letter-spacing: -1px;
       font-size: 12px;
+    }
+
+    @media (min-width: 768px) {
+      body {
+        margin: 50px;
+      }
     }
 
     h1, h2, h3, h4, h5, h6 {
@@ -77,7 +81,6 @@
 
     img {
       max-width: 100%;
-      margin: -5px;
     }
 
     .menu ul, .menu2 ul {
@@ -220,35 +223,41 @@
       min-width: 100px;
     }
 
-    /* Redes sociales unificadas en el Hero (Sin fondo blanco, mismo unicolor adaptado) */
+    /* REDES SOCIALES UNICOLOR VECTORIZADOS (SIN FONDO) */
     #rrss-hero {
       display: flex;
       align-items: center;
-      gap: 12px;
-      margin-top: 12px;
+      gap: 16px;
+      margin-top: 14px;
       flex-wrap: wrap;
       background: transparent !important;
       padding: 0 !important;
     }
 
     .rrss-icon {
-      font-size: 24px;
-      color: #fff;
+      font-size: 26px;
+      color: #ffffff;
       background: transparent !important;
       border: none !important;
-      transition: transform 0.3s ease, color 0.3s ease;
+      transition: color 0.2s ease, transform 0.2s ease;
       text-decoration: none;
       display: inline-flex;
       align-items: center;
       justify-content: center;
     }
 
-    .rrss-icon:hover {
-      transform: scale(1.2);
-      color: #f2172d;
+    .rrss-icon i, .rrss-icon svg {
+      color: #ffffff;
+      fill: #ffffff;
+      transition: color 0.2s ease, fill 0.2s ease;
     }
 
-    /* Features - Ancho completo en mobile */
+    .rrss-icon:hover i, .rrss-icon:hover svg {
+      color: #f2172d;
+      fill: #f2172d;
+    }
+
+    /* FEATURES */
     .features {
       display: grid;
       grid-gap: 20px;
@@ -267,27 +276,24 @@
       color: rgba(0, 0, 0, 0.5);
     }
 
-    .menu2 li a {
-      background: white;
-      border: 2px solid rgb(220, 0, 60);
-      color: black;
-    }
-
     .cat {
-      padding: 0px 2px;
+      padding: 2px 6px;
       color: white;
       background: rgb(220, 0, 80);
-      margin: 0px 4px;
-      font-size: 21px;
+      margin-right: 6px;
+      font-size: 14px;
+      display: inline-block;
+      font-family: 'Nova Square', sans-serif;
     }
 
     .efe_img {
-      margin-left: 7%;
-      width: 90%;
+      width: 100%;
       height: 100%;
-      text-align: center;
+      max-height: 120px;
+      object-fit: cover;
       cursor: pointer;
       transition: opacity 0.3s;
+      border-radius: 4px;
     }
     .efe_img:hover {
       opacity: 0.85;
@@ -306,9 +312,7 @@
     }
 
     .bottom {
-      display: grid;
-      grid-template-columns: 1fr;
-      align-items: center;
+      display: block;
       background: black;
     }
 
@@ -326,25 +330,24 @@
       border: 2px solid #f2172d !important;
       color: #fff !important;
       border-radius: 6px;
-      padding: 18px !important;
+      padding: 15px !important;
       box-shadow: 0 0 12px rgba(242, 23, 45, 0.3);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .news:hover {
-      transform: translateY(-4px);
+      transform: translateY(-2px);
       box-shadow: 0 0 20px rgba(242, 23, 45, 0.7);
     }
 
     .news a {
       color: #f2172d !important;
       font-family: 'Nova Square', sans-serif;
-      font-size: 20px !important;
+      font-size: 18px !important;
       line-height: 1.3;
-      padding-left: 0 !important;
       text-transform: uppercase;
       display: block;
-      margin-bottom: 12px;
+      margin-bottom: 8px;
       text-decoration: none;
       cursor: pointer;
     }
@@ -353,10 +356,11 @@
       background: transparent !important;
       color: #e0e0e0 !important;
       font-family: 'Lato', sans-serif;
-      font-size: 16px !important;
-      line-height: 1.6 !important;
+      font-size: 14px !important;
+      line-height: 1.5 !important;
       padding: 0 !important;
       text-align: left !important;
+      margin: 0;
     }
 
     /* Hero2 */
@@ -440,7 +444,6 @@
       font-size: 16px;
     }
 
-    /* Estilo para el segundo Desarrollado por con logo Spotiflix */
     .spotiflix-btn {
       display: inline-flex;
       align-items: center;
@@ -477,7 +480,6 @@
       padding: 1px 20px;
     }
 
-    /* Botón animado */
     .btn {
       position: relative;
       letter-spacing: 0.15em;
@@ -489,7 +491,7 @@
       transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.15s;
     }
 
-    /* MODAL RETRO/DARK - Letra ampliada */
+    /* MODAL RETRO/DARK */
     .modal-overlay {
       display: none;
       position: fixed;
@@ -548,7 +550,7 @@
     }
 
     .modal-body p {
-      font-size: 16px !important; /* Letra más grande en el modal como pediste */
+      font-size: 16px !important;
       line-height: 1.8;
       color: #ddd;
       white-space: pre-line;
@@ -582,7 +584,7 @@
       box-shadow: 0 0 10px rgba(0,0,0,0.5);
     }
 
-    /* Media Queries */
+    /* MEDIA QUERIES & MÓVIL */
     @media (max-width: 1000px) {
       .menu { order: -1; perspective: 800px; }
       [aria-controls="menu-list"] { display: block; margin-bottom: 10px; }
@@ -600,21 +602,80 @@
           "ctas2 ctas1 ctas3"
           "ctas2 ctas1 ctas3";
       }
-      .menu2 { font-size: 16px; }
     }
 
     @media (max-width: 700px) {
       .top { grid-template-areas: "hero hero" "cta1 cta2 cta2" "cta1 cta2 cta2"; }
       .medio { display: none; }
-      .banner { grid-template-columns: 1fr; height: 200px; }
-      .container { grid-template-columns: 1fr; } /* Noticias visibles y ordenadas de ancho completo en mobile */
+      .banner { grid-template-columns: 1fr; height: 180px; }
+      
+      /* Cajas de Features a 1 columna completa en Mobile */
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      /* Contenedor de Noticias y Reseñas en 1 columna de ancho completo */
+      .container, .menu2 {
+        grid-template-columns: 1fr !important;
+      }
+
+      /* Estilo Horizontal tipo Banner de x13 para Noticias y Reseñas en Mobile */
+      .news, .menu2 li {
+        display: grid !important;
+        grid-template-columns: 1fr 2fr !important; /* 1/3 Izquierda (Imagen), 2/3 Centro (Info) */
+        align-items: center;
+        gap: 12px;
+        background: #111 !important;
+        border: 2px solid #f2172d !important;
+        padding: 10px !important;
+        margin-bottom: 12px;
+        border-radius: 6px;
+      }
+
+      .news-img-container, .menu2 li p {
+        grid-column: 1 / 2;
+        margin: 0 !important;
+        width: 100%;
+        height: 100%;
+      }
+
+      .news-img-container img, .menu2 li img {
+        width: 100%;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 4px;
+        margin: 0 !important;
+      }
+
+      .news-content, .menu2-content {
+        grid-column: 2 / 3;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: left !important;
+      }
+
+      .news-content a, .menu2-content a {
+        font-size: 15px !important;
+        margin-bottom: 4px !important;
+        text-align: left !important;
+      }
+
+      .news-content p, .menu2-content p {
+        font-size: 12px !important;
+        color: #ccc !important;
+        text-align: left !important;
+        line-height: 1.3 !important;
+      }
     }
 
     @media (max-width: 499px) {
-      .top { grid-template-areas: "hero" "cta1" "cta2" "cta2"; }
+      .top { grid-template-areas: "hero" "cta1" "cta2"; }
       .cta2 { display: none; }
-      .bottom { display: block; } /* Forzar que aparezcan las noticias en mobile */
-      .menu2 { display: grid; } /* Forzar que aparezcan las reseñas en mobile */
+      
+      /* Garantizar la visibilidad de noticias y reseñas */
+      .bottom { display: block !important; }
+      .menu2 { display: grid !important; }
     }
   </style>
 </head>
@@ -657,19 +718,27 @@
         <span style="font-size:16px">All in One Three</span>
         <img alt="equistrece" style="width: 80px;height:70px;border-radius:50%;border:0px; margin:10px" src="equistrece_eye.jpg">
     
-        <!-- Redes sociales unificadas y sin fondo blanco -->
+        <!-- REDES SOCIALES VECTORIZADAS MONOCROMÁTICAS -->
         <div id="rrss-hero">
-          <a href="https://open.spotify.com/user/31opnk6xgn7qwbjhdmwrrefburgm" target="_blank" title="Spotify" class="rrss-icon"><i class="fa fa-spotify"></i></a>
-          <a href="https://www.instagram.com/equistrece" target="_blank" title="Instagram" class="rrss-icon"><i class="fa fa-instagram"></i></a>
+          <a href="https://open.spotify.com/user/31opnk6xgn7qwbjhdmwrrefburgm" target="_blank" title="Spotify" class="rrss-icon">
+            <i class="fa fa-spotify"></i>
+          </a>
+          <a href="https://www.instagram.com/equistrece" target="_blank" title="Instagram" class="rrss-icon">
+            <i class="fa fa-instagram"></i>
+          </a>
           <a href="https://letterboxd.com/ivanguillermo/list/equistrece/" target="_blank" title="Letterboxd" class="rrss-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="6" cy="12" r="4" fill="#00e054"/>
-              <circle cx="12" cy="12" r="4" fill="#40bcf4"/>
-              <circle cx="18" cy="12" r="4" fill="#ff8000"/>
+            <svg width="24" height="24" viewBox="0 0 24 24">
+              <circle cx="6" cy="12" r="4"/>
+              <circle cx="12" cy="12" r="4"/>
+              <circle cx="18" cy="12" r="4"/>
             </svg>
           </a>
-          <a href="https://www.youtube.com/equistrece" target="_blank" title="YouTube" class="rrss-icon"><i class="fa fa-youtube"></i></a>
-          <a href="#" title="Facebook" class="rrss-icon"><i class="fa fa-facebook-official"></i></a>
+          <a href="https://www.youtube.com/equistrece" target="_blank" title="YouTube" class="rrss-icon">
+            <i class="fa fa-youtube-play"></i>
+          </a>
+          <a href="#" title="Facebook" class="rrss-icon">
+            <i class="fa fa-facebook-official"></i>
+          </a>
         </div>
       </header>
     
@@ -716,39 +785,9 @@
       </div>
     </section>
 
-    <div class="menu2">
-      <ul class="efemerides-list">
-        <li>
-          <a href="https://letterboxd.com/ivanguillermo/film/nineteen-eighty-four-1984/">
-            <b>R3-SEÑA</b> <span class="cat">FILM</span> Nineteen Eighty-Four (1984)
-          </a>
-          <p><img class="efe_img" src="1984.jpeg" alt="1984"></p>
-        </li>
-        <li>
-          <a href="#"><b>R3-tr0</b> <span class="cat">MUSIC</span> Erys - Jaden</a>
-          <p><img class="efe_img" src="erys_jaden.png" alt="Erys - Jaden"></p>
-        </li>
-        <li>
-          <a href="#"><b>R3-SUMEN</b> <span class="cat">ANIME</span> Serial Experiments Lain</a>
-          <p><img class="efe_img" src="serial_experiments_lain.jpeg" alt="Serial Experiments Lain"></p>
-        </li>
-      </ul>
-      <ul class="efemerides-list">
-        <li>
-          <a href="#"><b>R3-SUMEN</b> <span class="cat">ANIME</span> Boogiepop Phantom</a>
-          <p><img class="efe_img" src="boggiepop_phantom.png" alt="Boogiepop Phantom"></p>
-        </li>
-        <li>
-          <a href="https://letterboxd.com/ivanguillermo/film/nineteen-eighty-four-1984/">
-            <b>R3-VISION</b> <span class="cat">FILM</span> Quien es Willy Wonka?
-          </a>
-          <p><img class="efe_img" src="willy_wonka_1971.jpeg" alt="Willy Wonka"></p>
-        </li>
-        <li>
-          <a href="#"><b>R3-c0M3NDAC1ON</b> <span class="cat">MUSIC</span> Museo Rosenbach</a>
-          <p><img class="efe_img" src="museo_rosenbach.jpg" alt="Museo Rosenbach"></p>
-        </li>
-      </ul>
+    <h2 style="color:white; font-family:'Nova Square'; margin-top:10px;">RESEÑAS</h2>
+    <div class="menu2" id="resenas-container">
+      <!-- Las 3 reseñas dinámicas se renderizan aquí -->
     </div>
 
     <div class="medio">
@@ -759,7 +798,6 @@
         <img alt="equistrece" style="width: 80px;height:80px;border-radius:50%;border:0px; margin:30px" src="equistrece_eye.jpg">
       </header>
       
-      <!-- Segundo Desarrollado por con enlace a spotiflix.github.io e icono spotiflix_logo.png -->
       <div class="ctas ctas1">
         <a href="https://spotiflix.github.io" target="_blank" style="text-decoration:none;">
           <button class="spotiflix-btn" type="button">
@@ -784,10 +822,10 @@
 
     <section class="banner"></section>
 
-    <h1 style="color:white">NOTICIAS</h1>
+    <h1 style="color:white; font-family:'Nova Square';">NOTICIAS</h1>
     <section class="bottom" id="bottom">
-      <div class="container">
-        <!-- Las noticias se cargan dinámicamente desde el script -->
+      <div class="container" id="noticias-container">
+        <!-- Las 3 noticias dinámicas se renderizan aquí -->
       </div>
     </section>
   </div>
@@ -840,43 +878,30 @@
       });
     }
 
+    /* Carga exactamente 3 noticias con la nueva estructura de 1/3 imagen y 2/3 info */
     async function loadNoticias() {
       try {
         const noticias = await fetchSheetTab('Noticias');
 
-        const getRecientes = (cat) => noticias
-          .filter(n => (n.categoria || '').toString().toLowerCase().trim() === cat)
-          .slice(-5)
-          .slice(-2);
+        const seleccionadas = noticias.slice(-3).reverse();
 
-        const cineItems = getRecientes('cine');
-        const wrestlingItems = getRecientes('wrestling');
-        const serieItems = getRecientes('serie');
-
-        const seleccionadas = [
-          cineItems[0], wrestlingItems[0], serieItems[0],
-          serieItems[1], wrestlingItems[1], cineItems[1]
-        ].filter(Boolean);
-
-        const container = document.querySelector('#bottom .container');
+        const container = document.getElementById('noticias-container');
         if (!container) return;
         container.innerHTML = '';
 
         seleccionadas.forEach(n => {
           const card = document.createElement('div');
           card.className = 'news';
-          // El modal se abre al hacer clic tanto en la imagen como en el título
           card.innerHTML = `
-            <a href="#" onclick="openModal('${encodeURIComponent(JSON.stringify(n))}'); return false;">
-              <b>${n.fecha_mes}</b> 
-              <span class="cat">${n.fecha_dia}</span> 
-              ${n.titulo}
-            </a> 
-            <p style="font-size: 16px; padding: 15px 14px 0px 8px; line-height: 200%; text-align:center">
-              <img class="efe_img" src="${n.foto}" alt="${n.titulo}" onclick="openModal('${encodeURIComponent(JSON.stringify(n))}'); return false;"/>
-              <br/>
-              ${n.resumen}
-            </p>
+            <div class="news-img-container">
+              <img class="efe_img" src="${n.foto || 'x13.jpg'}" alt="${n.titulo}" onclick="openModal('${encodeURIComponent(JSON.stringify(n))}'); return false;"/>
+            </div>
+            <div class="news-content">
+              <a href="#" onclick="openModal('${encodeURIComponent(JSON.stringify(n))}'); return false;">
+                <span class="cat">${n.fecha_dia || 'INFO'}</span> ${n.titulo}
+              </a>
+              <p>${n.resumen || ''}</p>
+            </div>
           `;
           container.appendChild(card);
         });
@@ -885,38 +910,35 @@
       }
     }
 
+    /* Carga exactamente 3 reseñas con la nueva estructura de 1/3 imagen y 2/3 info */
     async function loadResenas() {
       try {
         const resenas = await fetchSheetTab('Resenas');
+        const seleccionadas = resenas.slice(0, 3);
+
+        const menu2Container = document.getElementById('resenas-container');
+        if (!menu2Container) return;
+
+        let html = '<ul style="padding:0; list-style:none; width:100%; display:grid; gap:15px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">';
         
-        const getRandom = (arr, n) => {
-          const shuffled = [...arr].sort(() => 0.5 - Math.random());
-          return shuffled.slice(0, n);
-        };
+        seleccionadas.forEach(r => {
+          html += `
+            <li class="news" style="margin:0;">
+              <div class="news-img-container">
+                <img class="efe_img" src="${r.foto || 'x13.jpg'}" alt="${r.titulo}"/>
+              </div>
+              <div class="news-content">
+                <a href="${r.link || '#'}" target="_blank">
+                  <span class="cat">${(r.categoria || 'RESEÑA').toUpperCase()}</span> ${r.titulo}
+                </a>
+                <p><b>${r.tipo || ''}</b></p>
+              </div>
+            </li>
+          `;
+        });
 
-        const musicItems = getRandom(resenas.filter(r => (r.categoria || '').toString().toLowerCase().trim() === 'music'), 2);
-        const filmItems = getRandom(resenas.filter(r => (r.categoria || '').toString().toLowerCase().trim() === 'film'), 2);
-        const serieItems = getRandom(resenas.filter(r => (r.categoria || '').toString().toLowerCase().trim() === 'serie'), 2);
-
-        const col1 = [musicItems[0], filmItems[0], serieItems[0]].filter(Boolean);
-        const col2 = [musicItems[1], filmItems[1], serieItems[1]].filter(Boolean);
-
-        const menu2Container = document.querySelector('.menu2');
-        if (!menu2Container || (col1.length === 0 && col2.length === 0)) return;
-
-        const renderCol = (list) => list.map(r => `
-          <li>
-            <a href="${r.link || '#'}" target="_blank">
-              <b>${r.tipo}</b> <span class="cat">${(r.categoria || '').toUpperCase()}</span> ${r.titulo}
-            </a> 
-            <p><img class="efe_img" src="${r.foto}" alt="${r.titulo}"/></p>
-          </li>
-        `).join('');
-
-        menu2Container.innerHTML = `
-          <ul id="efemerides">${renderCol(col1)}</ul>
-          <ul id="efemerides">${renderCol(col2)}</ul>
-        `;
+        html += '</ul>';
+        menu2Container.innerHTML = html;
       } catch (e) {
         console.error('Error cargando reseñas:', e);
       }
