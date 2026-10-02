@@ -23,7 +23,7 @@ async function fetchSheetTab(tabName) {
 async function loadNoticias() {
   try {
     const noticias = await fetchSheetTab('Noticias');
-    const seleccionadas = noticias.slice(-3).reverse();
+    const seleccionadas = noticias.slice(-6).reverse();
 
     const container = document.getElementById('noticias-container');
     if (!container) return;
@@ -64,7 +64,7 @@ async function loadNoticias() {
 async function loadResenas() {
   try {
     const resenas = await fetchSheetTab('Resenas');
-    const seleccionadas = resenas.slice(0, 3);
+    const seleccionadas = resenas.slice(0, 6);
 
     const menu2Container = document.getElementById('resenas-container');
     if (!menu2Container) return;
