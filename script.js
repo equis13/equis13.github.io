@@ -1,4 +1,3 @@
-// ID del Spreadsheet de Google
 const SPREADSHEET_ID = '1Fhl26Rla6TJ5QL2G-LKQ_YGweRg6OACLrz8EU0H4nB4';
 
 async function fetchSheetTab(tabName) {
@@ -20,102 +19,82 @@ async function fetchSheetTab(tabName) {
   });
 }
 
+/* Carga exactamente 3 noticias con la estructura de 1/3 imagen y 2/3 info */
 async function loadNoticias() {
   try {
     const noticias = await fetchSheetTab('Noticias');
+    const seleccionadas = noticias.slice(-3).reverse();
 
-    const getRecientes = (cat) => noticias
-      .filter(n => (n.categoria || '').toString().toLowerCase().trim() === cat)
-      .slice(-5)
-      .slice(-2);
-
-    const cineItems = getRecientes('cine');
-    const wrestlingItems = getRecientes('wrestling');
-    const serieItems = getRecientes('serie');
-
-    const seleccionadas = [
-      cineItems[0], wrestlingItems[0], serieItems[0],
-      serieItems[1], wrestlingItems[1], cineItems[1]
-    ].filter(Boolean);
-
-    const container = document.querySelector('#bottom .container');
+    const container = document.getElementById('noticias-container');
     if (!container) return;
     container.innerHTML = '';
 
     seleccionadas.forEach(n => {
-      const hasText = n.texto_completo && n.texto_completo.toString().trim() !== '';
-      const hasLink = n.link && n.link.toString().trim() !== '';
-      
-      let clickHandler = '';
-      let hrefAttr = '#';
-
-      if (hasText) {
-        clickHandler = `onclick="openModal('${encodeURIComponent(JSON.stringify(n))}'); return false;"`;
-      } else if (hasLink) {
-        hrefAttr = n.link;
-      }
-
       const card = document.createElement('div');
       card.className = 'news';
       card.innerHTML = `
-        <a href="${hrefAttr}" ${clickHandler} style="cursor:pointer;">
-          <b>${n.fecha_mes}</b> 
-          <span class="cat">${n.fecha_dia}</span> 
-          ${n.titulo}
-        </a> 
-        <p style="font-size: 16px; padding: 15px 14px 0px 8px; line-height: 200%; text-align:center">
-          <img class="efe_img" src="${n.foto}" alt="${n.titulo}"/>
-          <br/>
-          ${n.resumen}
-        </p>
+        <div class="news-img-container">
+          <img class="efe_img" src="${n.foto || 'x13.jpg'}" alt="${n.titulo}" data-news='${JSON.stringify(n).replace(/'/g, "&apos;")}'>
+        </div>
+        <div class="news-content">
+          <a class="news-title-btn" data-news='${JSON.stringify(n).replace(/'/g, "&apos;")}'>
+            <span class="cat">${n.fecha_dia || 'INFO'}</span> ${n.titulo}
+          </a>
+          <p>${n.resumen || ''}</p>
+        </div>
       `;
       container.appendChild(card);
     });
+
+    // Delegación de eventos para abrir el modal
+    container.querySelectorAll('.efe_img, .news-title-btn').forEach(el => {
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        const newsData = JSON.parse(el.getAttribute('data-news'));
+        openModal(newsData);
+      });
+    });
+
   } catch (e) {
     console.error('Error cargando noticias:', e);
   }
 }
 
+/* Carga exactamente 3 reseñas con la estructura de 1/3 imagen y 2/3 info */
 async function loadResenas() {
   try {
     const resenas = await fetchSheetTab('Resenas');
+    const seleccionadas = resenas.slice(0, 3);
+
+    const menu2Container = document.getElementById('resenas-container');
+    if (!menu2Container) return;
+
+    let html = '<ul style="padding:0; list-style:none; width:100%; display:grid; gap:15px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">';
     
-    const getRandom = (arr, n) => {
-      const shuffled = [...arr].sort(() => 0.5 - Math.random());
-      return shuffled.slice(0, n);
-    };
+    seleccionadas.forEach(r => {
+      html += `
+        <li class="news" style="margin:0;">
+          <div class="news-img-container">
+            <img class="efe_img" src="${r.foto || 'x13.jpg'}" alt="${r.titulo}"/>
+          </div>
+          <div class="news-content">
+            <a href="${r.link || '#'}" target="_blank">
+              <span class="cat">${(r.categoria || 'RESEÑA').toUpperCase()}</span> ${r.titulo}
+            </a>
+            <p><b>${r.tipo || ''}</b></p>
+          </div>
+        </li>
+      `;
+    });
 
-    const musicItems = getRandom(resenas.filter(r => (r.categoria || '').toString().toLowerCase().trim() === 'music'), 2);
-    const filmItems = getRandom(resenas.filter(r => (r.categoria || '').toString().toLowerCase().trim() === 'film'), 2);
-    const serieItems = getRandom(resenas.filter(r => (r.categoria || '').toString().toLowerCase().trim() === 'serie'), 2);
-
-    const col1 = [musicItems[0], filmItems[0], serieItems[0]].filter(Boolean);
-    const col2 = [musicItems[1], filmItems[1], serieItems[1]].filter(Boolean);
-
-    const menu2Container = document.querySelector('.menu2');
-    if (!menu2Container || (col1.length === 0 && col2.length === 0)) return;
-
-    const renderCol = (list) => list.map(r => `
-      <li>
-        <a href="${r.link || '#'}" target="_blank">
-          <b>${r.tipo}</b> <span class="cat">${(r.categoria || '').toUpperCase()}</span> ${r.titulo}
-        </a> 
-        <p><img class="efe_img" src="${r.foto}" alt="${r.titulo}"/></p>
-      </li>
-    `).join('');
-
-    menu2Container.innerHTML = `
-      <ul id="efemerides">${renderCol(col1)}</ul>
-      <ul id="efemerides">${renderCol(col2)}</ul>
-    `;
+    html += '</ul>';
+    menu2Container.innerHTML = html;
   } catch (e) {
     console.error('Error cargando reseñas:', e);
   }
 }
 
-function openModal(jsonEncodedData) {
-  const data = JSON.parse(decodeURIComponent(jsonEncodedData));
-  
+function openModal(data) {
   document.getElementById('modal-title').innerText = data.titulo || '';
   document.getElementById('modal-date-cat').innerText = `${data.fecha_mes || ''} ${data.fecha_dia || ''} | Categoria: ${(data.categoria || '').toUpperCase()}`;
   document.getElementById('modal-img').src = data.foto || '';
@@ -136,21 +115,12 @@ function closeModal() {
   document.getElementById('news-modal').style.display = 'none';
 }
 
-window.onclick = function(event) {
-  const modal = document.getElementById('news-modal');
-  if (event.target === modal) {
-    closeModal();
-  }
-};
-
-// PWA: Registro del Service Worker e instalación
-let deferredPrompt;
-
+// Inicialización de Eventos al cargar el DOM
 document.addEventListener('DOMContentLoaded', () => {
   loadNoticias();
   loadResenas();
-  
-  // Toggle Menú Móvil
+
+  // Menú Responsive Toggle
   const navButton = document.querySelector('button[aria-expanded]');
   if (navButton) {
     navButton.addEventListener('click', () => {
@@ -159,34 +129,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Service Worker
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('sw.js')
-        .then(reg => console.log('SW registrado con éxito:', reg.scope))
-        .catch(err => console.error('Error al registrar SW:', err));
-    });
+  // Cerrar Modal
+  const closeBtn = document.getElementById('close-modal-btn');
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeModal);
   }
 
-  // Instalación PWA
-  const btnInstall = document.getElementById('btn-install');
-  if (btnInstall) {
-    window.addEventListener('beforeinstallprompt', (e) => {
-      e.preventDefault();
-      deferredPrompt = e;
-    });
-
-    btnInstall.addEventListener('click', async () => {
-      if (deferredPrompt) {
-        deferredPrompt.prompt();
-        const { outcome } = await deferredPrompt.userChoice;
-        if (outcome === 'accepted') {
-          console.log('El usuario aceptó la instalación');
-        }
-        deferredPrompt = null;
-      } else {
-        alert('Para instalar la App en tu dispositivo:\n- En Android/Chrome: Usa los 3 puntos y presiona "Añadir a la pantalla de inicio".\n- En iOS/Safari: Toca Compartir y "Agregar a inicio".');
-      }
-    });
-  }
+  window.addEventListener('click', (event) => {
+    const modal = document.getElementById('news-modal');
+    if (event.target === modal) {
+      closeModal();
+    }
+  });
 });
