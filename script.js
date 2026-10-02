@@ -23,7 +23,7 @@ async function fetchSheetTab(tabName) {
 async function loadNoticias() {
   try {
     const noticias = await fetchSheetTab('Noticias');
-    const seleccionadas = noticias.slice(-6).reverse();
+    const seleccionadas = noticias.slice(-4).reverse();
 
     const container = document.getElementById('noticias-container');
     if (!container) return;
