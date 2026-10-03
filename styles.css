@@ -535,6 +535,10 @@ i:hover {
   font-size: 14px;
 }
 
+#modal-text{
+  font-size:20px;
+}
+
 .feature-box {
   background: #111;
   border-radius: 6px;
